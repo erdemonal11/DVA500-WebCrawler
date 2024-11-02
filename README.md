@@ -68,8 +68,11 @@ make remove_network
 - Inspired by concepts in web crawling and distributed systems.
 - Uses [requests](https://docs.python-requests.org/en/latest/) and [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) for HTTP requests and HTML parsing.
 
+## Detailed Analysis Report
 
+For a comprehensive overview of the project's findings and performance metrics, please refer to the detailed analysis report below:
 
+[LAB1 G7 Report.pdf](https://github.com/user-attachments/files/17606721/LAB1.G7.Report.pdf)
 
 
 
