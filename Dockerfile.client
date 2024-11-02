@@ -1,0 +1,10 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY client.py /app/client.py
+COPY crawler.cfg /app/crawler.cfg
+
+RUN pip install --no-cache-dir requests configparser beautifulsoup4
+
+ENTRYPOINT ["python3", "/app/client.py"]
