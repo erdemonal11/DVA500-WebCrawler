@@ -1,6 +1,6 @@
-# URLVoyager
+# DVA500-WebCrawler
 
-URLVoyager is a containerized web crawler that autonomously explores the internet, fetching HTML pages and extracting links while ensuring each page is visited only once. Built on a client-server architecture, it is designed for efficiency and ease of use, making it ideal for data extraction and web analysis.
+DVA500: Industriella system i datamoln – WebCrawler is a containerized web crawler that autonomously explores the internet, fetching HTML pages and extracting links while ensuring each page is visited only once. Built on a client-server architecture, it is designed for efficiency and ease of use, making it ideal for data extraction and web analysis.
 
 ## Architecture Diagram
 
