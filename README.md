@@ -26,9 +26,9 @@ This diagram shows the interaction between clients and the server, where clients
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/erdemonal11/URLVoyager.git
-   cd URLVoyager
-
+   git clone https://github.com/erdemonal11/DVA500-WebCrawler.git
+   cd DVA500-WebCrawler
+   
 2. **Build and run the web server**
     ```bash
     make create_web
