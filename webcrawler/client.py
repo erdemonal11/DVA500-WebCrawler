@@ -6,18 +6,7 @@ import requests
 import configparser
 from bs4 import BeautifulSoup
 
-process_id = sys.argv[1]  
-
-pid = os.getpid()
-
-url_to_visit = sys.argv[2]
-
-config = configparser.ConfigParser()
-config.read('crawler.cfg')
-HOST = config['server']['host']  
-PORT = int(config['server']['port'])
-
-def request_with_retry(url, retries=5, delay=5):
+def request_with_retry(url, retries=5, delay=5, process_id=None):
     for attempt in range(retries):
         try:
             response = requests.get(url)
@@ -28,10 +17,10 @@ def request_with_retry(url, retries=5, delay=5):
             time.sleep(delay)
     raise Exception(f"[Process #{process_id}] Failed to connect to {url} after {retries} attempts")
 
-def check_visited(url):
+def check_visited(url, host, port, process_id):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((HOST, PORT))
+            s.connect((host, port))
             s.sendall(url.encode())
             response = s.recv(1024).decode()
             return response == 'Y'
@@ -40,17 +29,30 @@ def check_visited(url):
         print(f"[Process #{process_id}] Exiting because server is unavailable.")
         sys.exit(1)
 
-def visit(url):
-    if check_visited(url):
+def visit(url, host, port, process_id):
+    if check_visited(url, host, port, process_id):
         print(f"[Process #{process_id}] Skipping {url}, already visited.")
         return
     
     print(f"[Process #{process_id}] parsing {url}")
-    reqs = request_with_retry(url)
+    reqs = request_with_retry(url, process_id=process_id)
     soup = BeautifulSoup(reqs.text, 'html.parser')
     return
 
-visit(url_to_visit)
+def main():
+    process_id = sys.argv[1]  
+    pid = os.getpid()
+    url_to_visit = sys.argv[2]
+    
+    config = configparser.ConfigParser()
+    config.read('crawler.cfg')
+    HOST = config['server']['host']  
+    PORT = int(config['server']['port'])
+    
+    visit(url_to_visit, HOST, PORT, process_id)
+    
+    print(f"[Process #{process_id}] completed, bye!")
+    time.sleep(1)
 
-print(f"[Process #{process_id}] completed, bye!")
-time.sleep(1)
+if __name__ == "__main__":
+    main()

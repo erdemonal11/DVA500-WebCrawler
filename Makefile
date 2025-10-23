@@ -1,14 +1,14 @@
 basename=$(shell docker inspect --format='{{.NetworkSettings.Networks.crawlernet.Gateway}}' webserver)
 n ?= 2  
 
-.PHONY: run_clients clean surf install run_server create_web stop_all remove_network
+.PHONY: run_clients clean surf install run_server create_web stop_all remove_network build_client
 
 surf:
 	@google-chrome --incognito http://$(basename):8080 2> /dev/null
 
-install:
-	@pip3 install -q requests --upgrade
-	@pip3 install -q bs4 --upgrade
+build_client:
+	@echo "Building client image..."
+	@docker build -f Dockerfile.client -t my-crawler-client .
 
 run_server:
 	@echo "Starting server..."
@@ -16,7 +16,7 @@ run_server:
 	@docker build -f Dockerfile.server -t my-crawler-server .
 	@docker run --network crawlernet -p 8015:8015 --name my-crawler-server-container -it my-crawler-server
 
-run_clients:
+run_clients: build_client
 	@echo "Running $(n) processes..."
 	@rm -f execution_times.log  
 	@for i in $(shell seq 1 $(n)); do \
@@ -47,3 +47,9 @@ remove_network:
 clean_all:
 	@echo "Stopping and removing all containers..."
 	@docker rm -f $(docker ps -aq) 2>/dev/null || true
+
+install:
+	poetry install
+
+build:
+	poetry build
