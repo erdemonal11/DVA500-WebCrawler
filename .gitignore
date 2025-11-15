@@ -6,3 +6,5 @@ venv/
 *.egg-info/
 .DS_Store
 Thumbs.db
+docs/_build/
+docs/build/

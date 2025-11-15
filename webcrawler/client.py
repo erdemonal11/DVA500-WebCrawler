@@ -12,6 +12,24 @@ logger = logging.getLogger(__name__)
 
 
 def request_with_retry(url, retries=5, delay=5, process_id=None):
+    """
+    Request a URL with retry mechanism.
+
+    Attempts to fetch a URL with automatic retry on connection errors.
+    Logs warnings for each failed attempt and raises an exception if all retries fail.
+
+    Args:
+        url (str): The URL to request.
+        retries (int): Number of retry attempts. Defaults to 5.
+        delay (int): Delay between retries in seconds. Defaults to 5.
+        process_id (str, optional): Process identifier for logging purposes.
+
+    Returns:
+        requests.Response: Response object if the request succeeds.
+
+    Raises:
+        Exception: If all retry attempts fail to connect to the URL.
+    """
     for attempt in range(retries):
         try:
             response = requests.get(url)
@@ -30,6 +48,24 @@ def request_with_retry(url, retries=5, delay=5, process_id=None):
 
 
 def check_visited(url, host, port, process_id):
+    """
+    Check if a URL has already been visited by querying the server.
+
+    Connects to the server via socket and sends the URL. The server responds
+    with 'Y' if the URL was visited, 'N' otherwise.
+
+    Args:
+        url (str): The URL to check.
+        host (str): Server hostname or IP address.
+        port (int): Server port number.
+        process_id (str): Process identifier for logging purposes.
+
+    Returns:
+        bool: True if the URL was already visited, False otherwise.
+
+    Raises:
+        SystemExit: If connection to the server fails.
+    """
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((host, port))
@@ -49,6 +85,21 @@ def check_visited(url, host, port, process_id):
 
 
 def visit(url, host, port, process_id):
+    """
+    Visit a URL if it hasn't been visited before.
+
+    Checks with the server if the URL was already visited. If not, fetches
+    the URL content and parses it with BeautifulSoup.
+
+    Args:
+        url (str): The URL to visit.
+        host (str): Server hostname or IP address.
+        port (int): Server port number.
+        process_id (str): Process identifier for logging purposes.
+
+    Returns:
+        None: This function returns nothing.
+    """
     if check_visited(url, host, port, process_id):
         logger.info("[Process #%s] Skipping %s, already visited.", process_id, url)
         return
@@ -60,6 +111,19 @@ def visit(url, host, port, process_id):
 
 
 def main():
+    """
+    Main entry point for the web crawler client.
+
+    Sets up logging, reads configuration, and visits the specified URL.
+    Logs all operations and exits after completion.
+
+    Command-line arguments:
+        sys.argv[1]: Process ID for identification.
+        sys.argv[2]: URL to visit.
+
+    Environment variables:
+        LOG_LEVEL: Logging level (DEBUG, INFO, WARNING, ERROR). Defaults to INFO.
+    """
     process_id = sys.argv[1]
     url_to_visit = sys.argv[2]
 

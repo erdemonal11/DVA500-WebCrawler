@@ -147,6 +147,17 @@ Unit tests are written with [pytest](https://docs.pytest.org/). Tests are locate
 make test
 ```
 
+### Documentation
+
+Reference documentation is generated using [Sphinx](https://www.sphinx-doc.org/). Code includes docstrings for all functions.
+
+**Generate documentation:**
+```bash
+make docs
+```
+
+Documentation is built in `docs/_build/html/`. Open `docs/_build/html/index.html` in a browser to view.
+
 ## Cleaning Up
 
 To stop and remove all containers, use the following commands:

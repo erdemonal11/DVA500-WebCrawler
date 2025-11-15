@@ -7,6 +7,22 @@ from datetime import datetime
 
 
 def main():
+    """
+    Main entry point for the web crawler server.
+
+    Sets up a socket server that tracks visited URLs. Clients send URLs
+    and receive 'Y' if visited, 'N' otherwise. Logs all operations and
+    statistics on shutdown.
+
+    Configuration:
+        Reads server port from crawler.cfg file.
+
+    Environment variables:
+        LOG_LEVEL: Logging level (DEBUG, INFO, WARNING, ERROR). Defaults to INFO.
+
+    Signals:
+        Handles KeyboardInterrupt (CTRL+C) gracefully, logging statistics before exit.
+    """
     logger = logging.getLogger(__name__)
     log_level_name = os.getenv("LOG_LEVEL", "INFO").upper()
     level = getattr(logging, log_level_name, logging.INFO)

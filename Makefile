@@ -73,3 +73,7 @@ precommit:
 
 test:
 	poetry run pytest -q
+
+docs:
+	poetry run sphinx-build -b html docs/source docs/_build/html
+	@echo "Documentation built in docs/_build/html"
