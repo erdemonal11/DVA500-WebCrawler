@@ -144,5 +144,5 @@ docker rm webserver my-crawler-server-container
 ## Next Steps
 
 - Read the [README](https://github.com/erdemonal11/DVA500-WebCrawler/blob/main/README.md) for more details
-- Check the [API documentation](https://erdemonal11.github.io/DVA500-WebCrawler/) for code reference
+- Check the [Reference documentation](https://erdemonal11.github.io/DVA500-WebCrawler/) for code reference
 - Explore the code in `webcrawler/` directory
