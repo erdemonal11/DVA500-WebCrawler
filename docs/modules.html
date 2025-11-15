@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modules &mdash; DVA500-WebCrawler 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="DVA500-WebCrawler documentation" href="index.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="index.html" class="icon icon-home">
+            DVA500-WebCrawler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#webcrawler.client.check_visited"><code class="docutils literal notranslate"><span class="pre">check_visited()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webcrawler.client.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webcrawler.client.request_with_retry"><code class="docutils literal notranslate"><span class="pre">request_with_retry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webcrawler.client.visit"><code class="docutils literal notranslate"><span class="pre">visit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webcrawler.server.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DVA500-WebCrawler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Modules</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <section id="module-webcrawler.client">
+<span id="modules"></span><h1>Modules<a class="headerlink" href="#module-webcrawler.client" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="webcrawler.client.check_visited">
+<span class="sig-prename descclassname"><span class="pre">webcrawler.client.</span></span><span class="sig-name descname"><span class="pre">check_visited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webcrawler/client.html#check_visited"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#webcrawler.client.check_visited" title="Link to this definition"></a></dt>
+<dd><p>Check if a URL has already been visited by querying the server.</p>
+<p>Connects to the server via socket and sends the URL. The server responds
+with ‘Y’ if the URL was visited, ‘N’ otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL to check.</p></li>
+<li><p><strong>host</strong> (<em>str</em>) – Server hostname or IP address.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – Server port number.</p></li>
+<li><p><strong>process_id</strong> (<em>str</em>) – Process identifier for logging purposes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the URL was already visited, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>SystemExit</strong> – If connection to the server fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="webcrawler.client.main">
+<span class="sig-prename descclassname"><span class="pre">webcrawler.client.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webcrawler/client.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#webcrawler.client.main" title="Link to this definition"></a></dt>
+<dd><p>Main entry point for the web crawler client.</p>
+<p>Sets up logging, reads configuration, and visits the specified URL.
+Logs all operations and exits after completion.</p>
+<dl class="simple">
+<dt>Command-line arguments:</dt><dd><p>sys.argv[1]: Process ID for identification.
+sys.argv[2]: URL to visit.</p>
+</dd>
+<dt>Environment variables:</dt><dd><p>LOG_LEVEL: Logging level (DEBUG, INFO, WARNING, ERROR). Defaults to INFO.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="webcrawler.client.request_with_retry">
+<span class="sig-prename descclassname"><span class="pre">webcrawler.client.</span></span><span class="sig-name descname"><span class="pre">request_with_retry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webcrawler/client.html#request_with_retry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#webcrawler.client.request_with_retry" title="Link to this definition"></a></dt>
+<dd><p>Request a URL with retry mechanism.</p>
+<p>Attempts to fetch a URL with automatic retry on connection errors.
+Logs warnings for each failed attempt and raises an exception if all retries fail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL to request.</p></li>
+<li><p><strong>retries</strong> (<em>int</em>) – Number of retry attempts. Defaults to 5.</p></li>
+<li><p><strong>delay</strong> (<em>int</em>) – Delay between retries in seconds. Defaults to 5.</p></li>
+<li><p><strong>process_id</strong> (<em>str</em><em>, </em><em>optional</em>) – Process identifier for logging purposes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Response object if the request succeeds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>requests.Response</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If all retry attempts fail to connect to the URL.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="webcrawler.client.visit">
+<span class="sig-prename descclassname"><span class="pre">webcrawler.client.</span></span><span class="sig-name descname"><span class="pre">visit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webcrawler/client.html#visit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#webcrawler.client.visit" title="Link to this definition"></a></dt>
+<dd><p>Visit a URL if it hasn’t been visited before.</p>
+<p>Checks with the server if the URL was already visited. If not, fetches
+the URL content and parses it with BeautifulSoup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL to visit.</p></li>
+<li><p><strong>host</strong> (<em>str</em>) – Server hostname or IP address.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – Server port number.</p></li>
+<li><p><strong>process_id</strong> (<em>str</em>) – Process identifier for logging purposes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-webcrawler.server">
+<dt class="sig sig-object py" id="webcrawler.server.main">
+<span class="sig-prename descclassname"><span class="pre">webcrawler.server.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webcrawler/server.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#webcrawler.server.main" title="Link to this definition"></a></dt>
+<dd><p>Main entry point for the web crawler server.</p>
+<p>Sets up a socket server that tracks visited URLs. Clients send URLs
+and receive ‘Y’ if visited, ‘N’ otherwise. Logs all operations and
+statistics on shutdown.</p>
+<dl class="simple">
+<dt>Configuration:</dt><dd><p>Reads server port from crawler.cfg file.</p>
+</dd>
+<dt>Environment variables:</dt><dd><p>LOG_LEVEL: Logging level (DEBUG, INFO, WARNING, ERROR). Defaults to INFO.</p>
+</dd>
+<dt>Signals:</dt><dd><p>Handles KeyboardInterrupt (CTRL+C) gracefully, logging statistics before exit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="DVA500-WebCrawler documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Erdem Önal.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>
