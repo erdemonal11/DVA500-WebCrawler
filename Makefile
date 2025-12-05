@@ -2,7 +2,13 @@ basename=$(shell docker inspect --format='{{.NetworkSettings.Networks.crawlernet
 n ?= 2
 LOG_LEVEL ?= INFO
 
-.PHONY: run_clients clean surf install run_server create_web stop_all remove_network build_client
+.DEFAULT_GOAL := help
+
+.PHONY: run_clients clean surf install run_server create_web stop_all remove_network build_client help
+
+help:
+	@echo "Usage: make <target>"
+	@echo "Targets: create_web, run_server, run_clients n=..., stop_all, remove_network, build, lint, format, precommit, test, docs"
 
 surf:
 	@google-chrome --incognito http://$(basename):8080 2> /dev/null
