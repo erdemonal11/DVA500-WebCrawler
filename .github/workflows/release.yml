@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache Poetry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+          key: poetry-${{ runner.os }}-${{ matrix.python-version || '3.11' }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Lint
+        run: poetry run ruff check .
+
+      - name: Test
+        run: poetry run pytest -q
+
+      - name: Build package
+        run: poetry build
+
+      - name: Build docs
+        run: poetry run sphinx-build -b html docs/source docs/_build/html
+
+      - name: Archive docs
+        run: |
+          cd docs/_build
+          tar -czf html.tar.gz html
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          git fetch --tags
+          previous_tag=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || true)
+          if [ -z "$previous_tag" ]; then
+            log_range=$(git rev-list --max-parents=0 HEAD)..HEAD
+          else
+            log_range=${previous_tag}..HEAD
+          fi
+          notes=$(git log --pretty=format:"- %s" $log_range)
+          echo "notes<<'EOF'" >> $GITHUB_OUTPUT
+          echo "$notes" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*
+            docs/_build/html.tar.gz
+          body: |
+            ## Changelog
+            ${{ steps.changelog.outputs.notes }}
