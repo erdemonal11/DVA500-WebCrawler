@@ -67,9 +67,11 @@ jobs:
             log_range=${previous_tag}..HEAD
           fi
           notes=$(git log --pretty=format:"- %s" $log_range)
-          echo "notes<<'EOF'" >> $GITHUB_OUTPUT
-          echo "$notes" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          {
+            echo "notes<<EOF"
+            echo "$notes"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create release
         uses: softprops/action-gh-release@v2
