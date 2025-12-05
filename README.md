@@ -1,7 +1,6 @@
 # DVA500-WebCrawler
 
 [![CI](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/ci.yml/badge.svg)](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/ci.yml)
-[![Release](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/release.yml)
 [![Pages](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/pages.yml/badge.svg)](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/pages.yml)
 
 [DVA500: Industriella system i datamoln](https://www.mdu.se/utbildning/kurser?kod=DVA500): WebCrawler is a containerized web crawler that explores the internet, fetches HTML pages, extracts links, and visits each page only once. It is built on a client server architecture.
