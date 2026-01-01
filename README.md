@@ -1,7 +1,7 @@
 # DVA500-WebCrawler
 
-[![CI](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/ci.yml/badge.svg)](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/ci.yml)
-[![Pages](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/pages.yml/badge.svg)](https://github.com/erdemonal11/DVA500-WebCrawler/actions/workflows/pages.yml)
+[![CI](https://github.com/erdemonal/DVA500-WebCrawler/actions/workflows/ci.yml/badge.svg)](https://github.com/erdemonal/DVA500-WebCrawler/actions/workflows/ci.yml)
+[![Pages](https://github.com/erdemonal/DVA500-WebCrawler/actions/workflows/pages.yml/badge.svg)](https://github.com/erdemonal/DVA500-WebCrawler/actions/workflows/pages.yml)
 
 [DVA500: Industriella system i datamoln](https://www.mdu.se/utbildning/kurser?kod=DVA500): WebCrawler is a containerized web crawler that explores the internet, fetches HTML pages, extracts links, and visits each page only once. It is built on a client server architecture.
 
@@ -29,7 +29,7 @@ Note: Running the server/clients via `poetry run` is not supported. Use Docker/M
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/erdemonal11/DVA500-WebCrawler.git
+    git clone https://github.com/erdemonal/DVA500-WebCrawler.git
     cd DVA500-WebCrawler
     poetry install
 
