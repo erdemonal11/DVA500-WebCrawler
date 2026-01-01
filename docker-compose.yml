@@ -1,0 +1,47 @@
+services:
+  webserver:
+    image: nginx:stable-alpine
+    container_name: webserver
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+    networks:
+      - crawlernet
+    restart: unless-stopped
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: my-crawler-server-container
+    ports:
+      - "8015:8015"
+    networks:
+      - crawlernet
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    depends_on:
+      - webserver
+    restart: unless-stopped
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    networks:
+      - crawlernet
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PROCESS_ID=${PROCESS_ID:-1}
+    depends_on:
+      - server
+      - webserver
+    command: ["${PROCESS_ID:-1}", "http://webserver:80/page_${PROCESS_ID:-1}.html"]
+    restart: "no"
+    profiles:
+      - clients
+
+networks:
+  crawlernet:
+    driver: bridge
